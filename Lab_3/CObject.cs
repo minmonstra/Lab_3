@@ -29,7 +29,7 @@ namespace Lab_3
             // размеры фигуры
             sprite.Width = this.size.Width;
             sprite.Height = this.size.Height;
-            sprite.RenderTransform = new TranslateTransform(position.X, position.Y);
+            sprite.RenderTransform = new TranslateTransform(position.X - size/2, position.Y - size/2);
             pointsValue = ((1 / this.size.Width) / lifetime) * 1000; // очковая стоимость объекта
         }
         private Point position; 
@@ -41,12 +41,24 @@ namespace Lab_3
         {
             this.pointsValue = pointsValue;
         }
-        public isMouseOnObject(Point mousePosition):bool
-        public getSprite():Ellipse
-        public getPointsValue():double
+        public bool isMouseOnObject(Point mousePosition)
+        {
+            double dx = mousePosition.X - position.X;
+            double dy = mousePosition.Y - position.Y;
+            double radius = size.Width / 2;
 
-        public updateLifetime(double delta):bool
+            return dx * dx + dy * dy <= radius * radius;
+        }
+        public Ellipse getSprite() { 
+            return sprite;
+        }
+        public double getPointsValue() {
+            return pointsValue;
+        }
 
-
+        public bool updateLifetime(double delta) {
+            lifetime -= delta;
+            return lifetime <= 0;
+        }
     }
 }
