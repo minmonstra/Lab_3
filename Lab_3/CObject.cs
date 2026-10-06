@@ -15,7 +15,8 @@ namespace Lab_3
         private Point position;      // центр круга
         protected Size size;
         private double lifetime;
-        protected Ellipse sprite;
+        private double pointsValue;
+        private Ellipse sprite;
 
         public CObject(Point position, double size, double lifetime)
         {
@@ -32,6 +33,8 @@ namespace Lab_3
             sprite.Width = this.size.Width;
             sprite.Height = this.size.Height;
             sprite.RenderTransform = new TranslateTransform(position.X - size / 2, position.Y - size / 2);
+
+            pointsValue = ((1 / this.size.Width) / lifetime) * 1000;
         }
 
         public bool isMouseOnObject(Point mousePosition)
@@ -42,10 +45,10 @@ namespace Lab_3
             return dx * dx + dy * dy <= radius * radius;
         }
 
-        public Ellipse getSprite()
-        {
-            return sprite;
-        }
+
+        public Ellipse getSprite() { return sprite; }
+
+        public double getPointsValue() { return pointsValue; }
 
         public bool updateLifetime(double delta)
         {
@@ -53,6 +56,5 @@ namespace Lab_3
             return lifetime <= 0;
         }
 
-         
     }
 }

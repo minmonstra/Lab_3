@@ -1,28 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
 
 namespace Lab_3
 {
-    public class CController // класс, управляющий собираемыми объектами
+    internal class CController // класс, управляющий собираемыми объектами
     {
-        private List<CObject> objects; // список собираемых объектов
-        private double spawnRate;
-        private double time;
+        private List<CObject> objects;   // список собираемых объектов
+        private double spawnRate;        // время между созданием объектов
+        private double time;             // время с момента создания последнего объекта
         private Random rng;
-        // время между созданием собираемых объектов
-        // время с момента создания последнего объекта
-        // минимальное и максимальное время жизни собираемых объектов
         private double minLifetime;
         private double maxLifetime;
-        // минимальный и максимальный размер собираемых объектов
         private double minSpriteSize;
         private double maxSpriteSize;
-        private Size sceneSize; // размер сцены
-        private double points; // набранные очки
+        private Size sceneSize;          // размер сцены
+        private double points;           // набранные очки
+
         public CController(double spawnRate, ulong startTime, Size sceneSize)
         {
             rng = new Random();
@@ -36,21 +30,25 @@ namespace Lab_3
             minSpriteSize = 10;
             maxSpriteSize = 20;
         }
+
         public void SpawnObject()
         {
             double lifetime = rng.NextDouble() * (maxLifetime - minLifetime) + minLifetime;
             double size = rng.NextDouble() * (maxSpriteSize - minSpriteSize) + minSpriteSize;
+
             // position это центр, поэтому отступаем от краёв на половину размера
             double x = size / 2 + rng.NextDouble() * (sceneSize.Width - size);
             double y = size / 2 + rng.NextDouble() * (sceneSize.Height - size);
 
             objects.Add(new CObject(new Point(x, y), size, lifetime));
         }
+
         public void destroyObject(CObject obj)
         {
             points += obj.getPointsValue();
             objects.Remove(obj);
         }
+
         public void Update(double delta)
         {
             time += delta;
@@ -59,12 +57,11 @@ namespace Lab_3
                 SpawnObject();
                 time = 0;
             }
+
             for (int i = objects.Count - 1; i >= 0; i--)
             {
                 if (objects[i].updateLifetime(delta))
-                {
                     objects.RemoveAt(i);
-                }
             }
         }
 
@@ -79,6 +76,7 @@ namespace Lab_3
                 }
             }
         }
+
         public List<CObject> getObjects() { return objects; }
         public double getPoints() { return points; }
     }
