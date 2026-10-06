@@ -13,7 +13,7 @@ namespace Lab_3
     internal class CObject
     {
         private Point position;      // центр круга
-        protected Size size;
+        private Size size;
         private double lifetime;
         private double pointsValue;
         private Ellipse sprite;
