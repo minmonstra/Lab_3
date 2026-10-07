@@ -16,7 +16,11 @@ namespace Lab_3
             countdownTimer = new CCountdownTimer(timeBeforeClick);
         }
 
-        public void mouseClick(Point mousePosition) { 
+        public bool CanClick { get { return canClick; } }
+
+        public double GetCooldownRemaining()
+        {
+            return countdownTimer.getRemaining();
         }
         public void countdownClick()
         {
@@ -39,9 +43,10 @@ namespace Lab_3
             }
         }
 
-        public void IncreaseTimeBeforeClick(double speedModifier)
+        public void ChangeTimeBeforeClick(double modifier)
         {
-            timeBeforeClick += speedModifier;
+            timeBeforeClick *= modifier;               // меньше 1 = перезарядка короче
+            if (timeBeforeClick < 0.1) timeBeforeClick = 0.1;
             countdownTimer.SetTime(timeBeforeClick);
         }
     }

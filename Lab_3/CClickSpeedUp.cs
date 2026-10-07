@@ -22,9 +22,10 @@ namespace Lab_3
 
         public override bool onClick(CPlayer player, CController controller, Point mousePosition)
         {
+            player.ChangeTimeBeforeClick(speedModifier);
             if (isMouseOnObject(mousePosition) == false)
                 return false;
-            player.IncreaseTimeBeforeClick(speedModifier);
+            player.ChangeTimeBeforeClick(speedModifier);
                 return true;
         }
     }

@@ -41,17 +41,17 @@ namespace Lab_3
             double x = size / 2 + rng.NextDouble() * (sceneSize.Width - size);
             double y = size / 2 + rng.NextDouble() * (sceneSize.Height - size);
             Point position = new Point(x, y);
-            double roll = rng.NextDouble();   // число от 0 до 1
+            double roll = rng.NextDouble();
             CCollectable obj;
 
-            if (roll < 0.6)                   
+            if (roll < 0.5)
                 obj = new CPointGiver(position, size, lifetime);
-            else if (roll < 0.8)              
+            else if (roll < 0.65)
                 obj = new CSpawnRateChanger(position, size, lifetime, 0.8);
-            else if (roll < 1.0)              
+            else if (roll < 0.8)
                 obj = new CLifetimeChanger(position, size, lifetime, 1.2);
             else
-                obj = new CClickSpeedUp(position, size, lifetime); 
+                obj = new CClickSpeedUp(position, size, lifetime, 0.8);
 
             objects.Add(obj);
         }
@@ -67,7 +67,7 @@ namespace Lab_3
             {
                 if (objects[i].onClick(player, this, mousePosition))
                 {
-                    objects.RemoveAt(i);
+                    destroyObject(objects[i]);
                     break;
                 }
             }
@@ -90,7 +90,12 @@ namespace Lab_3
             if (maxLifetime > 10) maxLifetime = 10;
         }
         public List<CCollectable> getObjects() { return objects; }
+        public void destroyObject(CCollectable obj)
+        {
+            objects.Remove(obj);
+        }
 
+        public double getPoints() { return points; }
         public void update(double delta)
         {
             time += delta;
@@ -103,7 +108,7 @@ namespace Lab_3
             {
                 if (objects[i].updateLifetime(delta))
                 {
-                    objects.RemoveAt(i);
+                    destroyObject(objects[i]);
                 }
             }
         }
