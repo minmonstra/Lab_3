@@ -7,6 +7,17 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
+        <StackPanel Orientation="Horizontal" Margin="10">
+            <TextBlock x:Name="PointsText" FontSize="24" Text="Очки: 0" Margin="0,0,30,0"/>
+            <TextBlock x:Name="CooldownText" FontSize="24" Text="Готов"/>
+        </StackPanel>
+
+        <Canvas x:Name="Scene" Grid.Row="1" Background="LightGray" ClipToBounds="True"
+            MouseLeftButtonDown="Scene_MouseLeftButtonDown"/>
     </Grid>
 </Window>

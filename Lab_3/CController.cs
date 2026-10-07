@@ -84,9 +84,14 @@ namespace Lab_3
         {
             minLifetime *= modifier;
             maxLifetime *= modifier;
-            // границы, чтобы интервал не стал нулевым или слишком большим
-            if (minLifetime < 0.5) minLifetime = 0.5;
-            if (maxLifetime > 10) maxLifetime = 10;
+
+            // общие границы для обоих значений
+            minLifetime = Math.Clamp(minLifetime, 0.5, 10);
+            maxLifetime = Math.Clamp(maxLifetime, 0.5, 10);
+
+            // максимум не должен быть меньше минимума
+            if (maxLifetime < minLifetime)
+                maxLifetime = minLifetime;
         }
         public List<CCollectable> getObjects() { return objects; }
         public void destroyObject(CCollectable obj)

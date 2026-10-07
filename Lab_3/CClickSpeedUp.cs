@@ -22,7 +22,7 @@ namespace Lab_3
 
         public override bool onClick(CPlayer player, CController controller, Point mousePosition)
         {
-            player.increaseSpeed(speedModifier);
+             
             if (isMouseOnObject(mousePosition) == false)
                 return false;
             player.increaseSpeed(speedModifier);
