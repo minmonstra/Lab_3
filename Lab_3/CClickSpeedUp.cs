@@ -17,7 +17,7 @@ namespace Lab_3
         {
             if (isMouseOnObject(mousePosition) == false)
                 return false;
-            cplayer.pointsIncrease(speedModifier);
+            cplayer.IncreaseTimeBeforeClick(speedModifier);
                 return true;
         }
     }
