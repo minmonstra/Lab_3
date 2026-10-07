@@ -10,7 +10,7 @@ using System.Windows.Shapes;
 
 namespace Lab_3
 {
-    internal class CObject
+    public class CObject
     {
         private Point position;      // центр круга
         private Size size;

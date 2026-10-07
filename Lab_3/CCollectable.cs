@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 using System.Windows.Shapes;
-
+using System.Windows;
 namespace Lab_3
 {
     public abstract class CCollectable
@@ -18,6 +19,7 @@ namespace Lab_3
             this.position = position;
             this.size = new Size(size, size);
             this.lifetime = lifetime;
+           
             sprite = new Ellipse();
             sprite.Fill = Brushes.BlueViolet;
             sprite.StrokeThickness = 2;
@@ -26,7 +28,7 @@ namespace Lab_3
             sprite.VerticalAlignment = VerticalAlignment.Center;
             sprite.Width = this.size.Width;
             sprite.Height = this.size.Height;
-            sprite.RenderTransform = new TranslateTransform(position.X,position.Y);
+            sprite.RenderTransform = new TranslateTransform(position.X - size / 2, position.Y - size / 2);
         }
         public bool isMouseOnObject(Point mousePosition)
         {
@@ -35,10 +37,14 @@ namespace Lab_3
             double radius = size.Width / 2;
             return dx * dx + dy * dy <= radius * radius;
         }
-
+        public bool updateLifetime(double delta)
+        {
+            lifetime -= delta;
+            return lifetime <= 0;
+        }
 
         public Ellipse getSprite() { return sprite; }
         // абстрактная функция обработки нажатия на объект
-        public abstract bool onClick(CPlayer player, CController controller,Point mousePosition);
+        public abstract bool onClick(CPlayer player, CController controller, Point mousePosition);
     }
 }

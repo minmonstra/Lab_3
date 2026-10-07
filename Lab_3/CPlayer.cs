@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab_3
 {
-    internal class CPlayer
+    public class CPlayer
     {
     }
 }

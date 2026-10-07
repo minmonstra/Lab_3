@@ -4,20 +4,23 @@ using System.Windows;
 
 namespace Lab_3
 {
-    internal class CController // класс, управляющий собираемыми объектами
+    public class CController // класс, управляющий собираемыми объектами
     {
-        private List<CObject> objects;   // список собираемых объектов
-        private double spawnRate;        // время между созданием объектов
-        private double time;             // время с момента создания последнего объекта
-        private Random rng;
-        private double minLifetime;
-        private double maxLifetime;
-        private double minSpriteSize;
-        private double maxSpriteSize;
-        private Size sceneSize;          // размер сцены
-        private double points;           // набранные очки
-
-        public CController(double spawnRate, ulong startTime, Size sceneSize)
+            List<CObject> objects; // список собираемых объектов
+            double spawnRate;
+            double time;
+            Random rng;
+            // время между созданием собираемых объектов
+            // время с момента создания последнего объекта
+            // минимальное и максимальное время жизни собираемых объектов
+            double minLifetime;
+            double maxLifetime;
+            // минимальный и максимальный размер собираемых объектов
+            double minSpriteSize;
+            double maxSpriteSize;
+            Size sceneSize; // размер сцены
+            double points; // набранные очк
+            public CController(double spawnRate, ulong startTime, Size sceneSize)
         {
             rng = new Random();
             objects = new List<CObject>();
