@@ -28,9 +28,17 @@ namespace Lab_3
             sprite.Height = this.size.Height;
             sprite.RenderTransform = new TranslateTransform(position.X,position.Y);
         }
+        public bool isMouseOnObject(Point mousePosition)
+        {
+            double dx = mousePosition.X - position.X;
+            double dy = mousePosition.Y - position.Y;
+            double radius = size.Width / 2;
+            return dx * dx + dy * dy <= radius * radius;
+        }
 
-// абстрактная функция обработки нажатия на объект
-public abstract bool onClick(CPlayer player, CController controller,
-Point mousePosition);
+
+        public Ellipse getSprite() { return sprite; }
+        // абстрактная функция обработки нажатия на объект
+        public abstract bool onClick(CPlayer player, CController controller,Point mousePosition);
     }
 }
