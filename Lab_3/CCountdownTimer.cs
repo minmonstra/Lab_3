@@ -10,13 +10,47 @@ namespace Lab_3
     {
         private double targetTime;
 
-        public  double getTime()
+        public CCountdownTimer(double time)
+        {
+            targetTime = time;
+        }
+
+        public double getTime()
         {
             return targetTime;
         }
 
-        public void update(double delta) { 
+        public void Update(double delta)
+        {
             targetTime = delta;
+        }
+
+        public void SetTime(double time)
+        {
+            targetTime = time;
+        }
+
+        public void Start()
+        {
+
+        }
+
+        public void Reset()
+        {
+            targetTime = 0;
+
+        }
+
+        public void IsFinished()
+        {
+            if (targetTime <= 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

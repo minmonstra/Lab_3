@@ -48,8 +48,10 @@ namespace Lab_3
                 obj = new CPointGiver(position, size, lifetime);
             else if (roll < 0.8)              
                 obj = new CSpawnRateChanger(position, size, lifetime, 0.8);
-            else                            
+            else if (roll < 1.0)              
                 obj = new CLifetimeChanger(position, size, lifetime, 1.2);
+            else
+                obj = new CClickSpeedUp(position, size, lifetime); 
 
             objects.Add(obj);
         }
@@ -88,5 +90,26 @@ namespace Lab_3
             if (maxLifetime > 10) maxLifetime = 10;
         }
         public List<CCollectable> getObjects() { return objects; }
+
+        public void update(double delta)
+        {
+            time += delta;
+            if (time >= spawnRate)
+            {
+                SpawnObject();
+                time = 0;
+            }
+            for (int i = objects.Count - 1; i >= 0; i--)
+            {
+                if (objects[i].updateLifetime(delta))
+                {
+                    objects.RemoveAt(i);
+                }
+            }
+        }
+        public void destroyObjects()
+        {
+            objects.Clear();
+        }
     }
 }

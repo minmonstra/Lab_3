@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Windows;
+using System.Windows.Media;
 
 namespace Lab_3
 {
@@ -30,11 +26,11 @@ namespace Lab_3
                 countdownTimer.Start();
             }
         }
-        public void update(double deltaTime)
+        public void update(double delta)
         {
             if (!canClick)
             {
-                countdownTimer.Update(deltaTime);
+                countdownTimer.Update(delta);
                 if (countdownTimer.IsFinished())
                 {
                     canClick = true;

@@ -1,5 +1,12 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Media;
+using System.Windows.Shapes;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace Lab_3
 {
@@ -13,11 +20,11 @@ namespace Lab_3
             sprite.Fill = Brushes.Pink;   // свой цвет, чтобы отличать бонус
         }
 
-        public override bool onClick(CPlayer player, CPlayer cplayer, Point mousePosition)
+        public override bool onClick(CPlayer player, CController controller, Point mousePosition)
         {
             if (isMouseOnObject(mousePosition) == false)
                 return false;
-            cplayer.IncreaseTimeBeforeClick(speedModifier);
+            player.IncreaseTimeBeforeClick(speedModifier);
                 return true;
         }
     }
