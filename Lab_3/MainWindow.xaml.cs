@@ -48,8 +48,9 @@ namespace Lab_3
                 Scene.Children.Add(obj.getSprite());
             }
             PointsText.Text = $"Очки: {controller.getPoints():F2}";
-            CooldownText.Text = $"Cooldown: {player.GetCooldownRemaining():F1}s";
-        
+            CooldownText.Text = $"Перезарядка клика: {player.GetCooldownRemaining():F1} с";
+           
+
         }
 
         private void Scene_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

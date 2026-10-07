@@ -7,7 +7,7 @@ namespace Lab_3
         private bool canClick;
         private double timeBeforeClick;
         private CCountdownTimer countdownTimer;
-
+ 
         public CPlayer(double timeBeforeClick)
         {
             this.timeBeforeClick = timeBeforeClick;

@@ -19,7 +19,8 @@ namespace Lab_3
         double minSpriteSize;
         double maxSpriteSize;
         Size sceneSize; // размер сцены
-        double points; // набранные очк
+        double points; // набранные очки
+ 
         public CController(double spawnRate, ulong startTime, Size sceneSize)
         {
             rng = new Random();
@@ -30,8 +31,8 @@ namespace Lab_3
             points = 0;
             minLifetime = 1;
             maxLifetime = 5;
-            minSpriteSize = 25;
-            maxSpriteSize = 40;
+            minSpriteSize = 20;
+            maxSpriteSize = 30;
         }
 
         public void SpawnObject()
