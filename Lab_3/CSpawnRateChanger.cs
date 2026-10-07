@@ -19,7 +19,7 @@ namespace Lab_3
             if (isMouseOnObject(mousePosition) == false)
                 return false;
 
-            controller.changeSpawRate(spawnModifier);
+            controller.changeSpawnRate(spawnModifier);
             return true;
         }
     }

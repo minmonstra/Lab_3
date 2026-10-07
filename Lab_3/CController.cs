@@ -60,7 +60,14 @@ namespace Lab_3
                 }
             }
         }
+        public void changeSpawnRate(double modifier)
+        {
+            spawnRate *= modifier;
 
+            // границы, чтобы интервал не стал нулевым или слишком большим
+            if (spawnRate < 0.2) spawnRate = 0.2;
+            if (spawnRate > 5) spawnRate = 5;
+        }
         public List<CCollectable> getObjects() { return objects; }
     }
 }
