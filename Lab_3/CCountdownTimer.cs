@@ -20,37 +20,11 @@ namespace Lab_3
             return targetTime;
         }
 
-        public void Update(double delta)
+        public void update(double delta)
         {
-            targetTime = delta;
-        }
-
-        public void SetTime(double time)
-        {
-            targetTime = time;
-        }
-
-        public void Start()
-        {
-
-        }
-
-        public void Reset()
-        {
-            targetTime = 0;
-
-        }
-
-        public void IsFinished()
-        {
-            if (targetTime <= 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            targetTime -= delta;
+            if (targetTime < 0)
+                targetTime = 0;
         }
     }
 }
