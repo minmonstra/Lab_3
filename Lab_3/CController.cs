@@ -40,8 +40,18 @@ namespace Lab_3
             double size = rng.NextDouble() * (maxSpriteSize - minSpriteSize) + minSpriteSize;
             double x = size / 2 + rng.NextDouble() * (sceneSize.Width - size);
             double y = size / 2 + rng.NextDouble() * (sceneSize.Height - size);
+            Point position = new Point(x, y);
+            double roll = rng.NextDouble();   // число от 0 до 1
+            CCollectable obj;
 
-            objects.Add(new CPointGiver(new Point(x, y), size, lifetime));
+            if (roll < 0.6)                   
+                obj = new CPointGiver(position, size, lifetime);
+            else if (roll < 0.8)              
+                obj = new CSpawnRateChanger(position, size, lifetime, 0.8);
+            else                            
+                obj = new CLifetimeChanger(position, size, lifetime, 1.2);
+
+            objects.Add(obj);
         }
 
         public void pointsIncrease(double value)

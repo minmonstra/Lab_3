@@ -13,11 +13,11 @@ namespace Lab_3
             sprite.Fill = Brushes.Pink;   // свой цвет, чтобы отличать бонус
         }
 
-        public override bool onClick(CPlayer player, CController controller,Point mousePosition)
+        public override bool onClick(CPlayer player, CPlayer cplayer, Point mousePosition)
         {
             if (isMouseOnObject(mousePosition) == false)
                 return false;
-            controller.pointsIncrease(speedModifier);
+            cplayer.pointsIncrease(speedModifier);
                 return true;
         }
     }

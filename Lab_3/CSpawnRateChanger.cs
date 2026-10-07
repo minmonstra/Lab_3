@@ -11,7 +11,7 @@ namespace Lab_3
             : base(position, size, lifetime)
         {
             this.spawnModifier = spawnRateModifier;
-            sprite.Fill = Brushes.Orange;   // свой цвет, чтобы отличать бонус
+            sprite.Fill = Brushes.Blue;   // свой цвет, чтобы отличать бонус
         }
 
         public override bool onClick(CPlayer player, CController controller, Point mousePosition)
