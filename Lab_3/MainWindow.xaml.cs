@@ -47,7 +47,7 @@ namespace Lab_3
             {
                 Scene.Children.Add(obj.getSprite());
             }
-            PointsText.Text = $"Points: {controller.getPoints()}";
+            PointsText.Text = $"Очки: {controller.getPoints():F2}";
             CooldownText.Text = $"Cooldown: {player.GetCooldownRemaining():F1}s";
         
         }

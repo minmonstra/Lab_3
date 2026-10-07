@@ -30,8 +30,8 @@ namespace Lab_3
             points = 0;
             minLifetime = 1;
             maxLifetime = 5;
-            minSpriteSize = 10;
-            maxSpriteSize = 20;
+            minSpriteSize = 25;
+            maxSpriteSize = 40;
         }
 
         public void SpawnObject()
