@@ -68,6 +68,15 @@ namespace Lab_3
             if (spawnRate < 0.2) spawnRate = 0.2;
             if (spawnRate > 5) spawnRate = 5;
         }
+
+        public void changeLifetime(double modifier)
+        {
+            minLifetime *= modifier;
+            maxLifetime *= modifier;
+            // границы, чтобы интервал не стал нулевым или слишком большим
+            if (minLifetime < 0.5) minLifetime = 0.5;
+            if (maxLifetime > 10) maxLifetime = 10;
+        }
         public List<CCollectable> getObjects() { return objects; }
     }
 }

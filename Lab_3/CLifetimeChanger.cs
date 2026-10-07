@@ -11,19 +11,17 @@ namespace Lab_3
             : base(position, size, lifetime)
         {
             this.lifetimeModifier = lifetimeModifier;
-            sprite.Fill = Brushes.Black;   // свой цвет, чтобы отличать бонус
+            sprite.Fill = Brushes.Teal;   // свой цвет, чтобы отличать бонус
         }
 
         public override bool onClick(CPlayer player, CController controller, Point mousePosition)
         {
             if (isMouseOnObject(mousePosition) == false)
                 return false;
-
+           
             controller.changeLifetime(lifetimeModifier);
             return true;
         }
     }
 }
-{
-    }
-}
+ 
