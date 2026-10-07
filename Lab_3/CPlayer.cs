@@ -13,41 +13,25 @@ namespace Lab_3
         {
             this.timeBeforeClick = timeBeforeClick;
             canClick = true;
-            countdownTimer = new CCountdownTimer(timeBeforeClick);
+            countdownTimer = new CCountdownTimer(0);
         }
 
-        public bool CanClick { get { return canClick; } }
-
+        public bool CanClick  
+                {
+                    get { return countdownTimer.getTime() <= 0; }
+                }
         public double GetCooldownRemaining()
         {
-            return countdownTimer.getRemaining();
+            return countdownTimer.getTime();
         }
-        public void countdownClick()
+        public void countdownClick(double delta)
         {
-            if (canClick)
-            {
-                canClick = false;
-                countdownTimer.Start();
-            }
+            countdownTimer.update(delta);
         }
-        public void update(double delta)
-        {
-            if (!canClick)
-            {
-                countdownTimer.Update(delta);
-                if (countdownTimer.IsFinished())
-                {
-                    canClick = true;
-                    countdownTimer.Reset();
-                }
-            }
-        }
-
         public void ChangeTimeBeforeClick(double modifier)
         {
             timeBeforeClick *= modifier;               // меньше 1 = перезарядка короче
             if (timeBeforeClick < 0.1) timeBeforeClick = 0.1;
-            countdownTimer.SetTime(timeBeforeClick);
         }
     }
 }
