@@ -3,7 +3,7 @@ using System.Windows.Media;
 
 namespace Lab_3
 {
-    internal class CSpawnRateChanger : CCollectable
+    public class CSpawnRateChanger : CCollectable
     {
         private double spawnModifier;   // множитель интервала появления сфер
 
