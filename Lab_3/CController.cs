@@ -51,8 +51,7 @@ namespace Lab_3
             else if (roll < 0.8)
                 obj = new CLifetimeChanger(position, size, lifetime, 1.2);
             else
-                obj = new CClickSpeedUp(position, size, lifetime, 0.8);
-
+                obj = new CClickSpeedUp(position, size, lifetime, 1.25);
             objects.Add(obj);
         }
 

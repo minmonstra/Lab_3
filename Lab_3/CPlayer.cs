@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using System.Windows.Media;
 
 namespace Lab_3
 {
@@ -16,22 +15,41 @@ namespace Lab_3
             countdownTimer = new CCountdownTimer(0);
         }
 
-        public bool CanClick  
-                {
-                    get { return countdownTimer.getTime() <= 0; }
-                }
-        public double GetCooldownRemaining()
+        //  перезарядка
+        public void mouseClick(Point mousePosition)
         {
-            return countdownTimer.getTime();
+            if (!canClick)
+                return;
+
+            canClick = false;
+            countdownTimer = new CCountdownTimer(timeBeforeClick);
         }
-        public void countdownClick(double delta)
+
+        // перезарядка закончилась
+        public void countdownEnded()
         {
+            canClick = true;
+        }
+
+        public void update(double delta)
+        {
+            if (canClick)
+                return;
+
             countdownTimer.update(delta);
+            if (countdownTimer.getTime() <= 0)
+                countdownEnded();
         }
-        public void ChangeTimeBeforeClick(double modifier)
+
+        // ускорение кликов 
+        public void increaseSpeed(double speedModifier)
         {
-            timeBeforeClick *= modifier;               // меньше 1 = перезарядка короче
-            if (timeBeforeClick < 0.1) timeBeforeClick = 0.1;
+            timeBeforeClick /= speedModifier;
+            if (timeBeforeClick < 0.1)
+                timeBeforeClick = 0.1;
         }
+         
+        public bool CanClick { get { return canClick; } }
+        public double GetCooldownRemaining() { return countdownTimer.getTime(); }
     }
 }
